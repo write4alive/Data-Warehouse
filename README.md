@@ -1,4 +1,4 @@
-# udacity_p3
+Data Engineering Nano Degree Programm of Udacity - Project3 -
 Project: Data Warehouse
 
 Introduction
