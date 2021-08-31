@@ -1,7 +1,12 @@
 import configparser
 import psycopg2
-from sql_queries import copy_table_queries, insert_table_queries
+from sql_queries import copy_table_queries, insert_table_queries,create_table_queries
 
+
+def create_tables(cur, conn):
+    for query in create_table_queries:
+        cur.execute(query)
+        conn.commit()
 
 def load_staging_tables(cur, conn):
     for query in copy_table_queries:
@@ -22,6 +27,7 @@ def main():
     conn = psycopg2.connect("host={} dbname={} user={} password={} port={}".format(*config['CLUSTER'].values()))
     cur = conn.cursor()
     
+    create_tables(cur,conn)
     load_staging_tables(cur, conn)
     insert_tables(cur, conn)
 
