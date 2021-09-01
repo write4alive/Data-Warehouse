@@ -129,11 +129,11 @@ myClusterProps = redshift.describe_clusters(ClusterIdentifier=DWH_CLUSTER_IDENTI
 prettyRedshiftProps(myClusterProps)
 
 
-# Take note of the cluster endpoint and role ARN
-DWH_ENDPOINT = myClusterProps['Endpoint']['Address']
-DWH_ROLE_ARN = myClusterProps['IamRoles'][0]['IamRoleArn']
-print("DWH_ENDPOINT :: ", DWH_ENDPOINT)
-print("DWH_ROLE_ARN :: ", DWH_ROLE_ARN)
+# # Take note of the cluster endpoint and role ARN
+# DWH_ENDPOINT = myClusterProps['Endpoint']['Address']
+# DWH_ROLE_ARN = myClusterProps['IamRoles'][0]['IamRoleArn']
+# print("DWH_ENDPOINT :: ", DWH_ENDPOINT)
+# print("DWH_ROLE_ARN :: ", DWH_ROLE_ARN)
 
 # Open an incoming TCP port to access the cluster ednpoint
 try:
@@ -155,7 +155,7 @@ except Exception as e:
 #     #-- Uncomment & run to delete the created resources
 #     redshift.delete_cluster( ClusterIdentifier=DWH_CLUSTER_IDENTIFIER,  SkipFinalClusterSnapshot=True)
 
-#     #### CAREFUL!! 
+# #     #### CAREFUL!! 
 
 # clean_up_resources()
 
