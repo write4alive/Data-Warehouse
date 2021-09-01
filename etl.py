@@ -62,7 +62,7 @@ def main():
 
 
     # uncomment to cleanse resources after we use.
-    # inf_clean()
+    inf_clean()
     
 
 

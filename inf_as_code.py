@@ -64,11 +64,6 @@ def creating_infrastructure_as_code():
                 })
 
     # To able to run infrastructure code we need clients for required services like ec2,s3,iam and redshift.
-
-
-  
-
-
     # creating the role, Create an IAM Role that makes Redshift able to access S3 bucket (ReadOnly)
 
     try:
