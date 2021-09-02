@@ -56,7 +56,7 @@ def main():
     Creating required tables  , loading data from s3 bucket and filling them with insert operations.
     """
 
-    # Creating infrastructure as code before starting etl operation.
+    # Creating infrastructure as code before starting etl operation. if you want to create as code config you dwh.cfg file and uncomment this code.
     inf_as_code()
 
     config = configparser.ConfigParser()
@@ -65,17 +65,17 @@ def main():
     conn = psycopg2.connect("host={} dbname={} user={} password={} port={}".format(*config['CLUSTER'].values()))
     cur = conn.cursor()
     
-    # create_tables(cur,conn)
-    # load_staging_tables(cur, conn)
-    # insert_tables(cur, conn)
-    # select_tables(cur,conn)
+    create_tables(cur,conn)
+    load_staging_tables(cur, conn)
+    insert_tables(cur, conn)
+    select_tables(cur,conn)
 
 
     conn.close()
 
 
     # uncomment to cleanse resources after we use.
-    # inf_clean()
+    inf_clean()
     
 
 
