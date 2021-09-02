@@ -1,7 +1,7 @@
 import configparser
 import psycopg2
 from inf_as_code import creating_infrastructure_as_code as inf_as_code , cleanse_infrastructure as inf_clean
-from sql_queries import copy_table_queries, insert_table_queries,create_table_queries
+from sql_queries import copy_table_queries, insert_table_queries,create_table_queries,select_data_counts
 
 
 def create_tables(cur, conn):
@@ -36,6 +36,17 @@ def insert_tables(cur, conn):
         cur.execute(query)
         conn.commit()
 
+def select_tables(cur,conn):
+    """
+
+    Select data counts for checking data counts.
+
+    """
+    for query in select_data_counts:
+        cur.execute(query)
+        for row in cur.fetchall():
+            print(query,row)
+        conn.commit()
 
 def main():
     """
@@ -54,15 +65,17 @@ def main():
     conn = psycopg2.connect("host={} dbname={} user={} password={} port={}".format(*config['CLUSTER'].values()))
     cur = conn.cursor()
     
-    create_tables(cur,conn)
-    load_staging_tables(cur, conn)
-    insert_tables(cur, conn)
+    # create_tables(cur,conn)
+    # load_staging_tables(cur, conn)
+    # insert_tables(cur, conn)
+    # select_tables(cur,conn)
+
 
     conn.close()
 
 
     # uncomment to cleanse resources after we use.
-    inf_clean()
+    # inf_clean()
     
 
 
